@@ -1,10 +1,22 @@
+html {
+  font-size: 16px;
+}
+:root {
+  --black: #111517;
+  --white: #fff;
+  --background: #fafafa;
+  --backgroundCard: #fafafa;
+}
+div.dark {
+  --black: #fafafa;
+  --white: #111517;
+  --background: #111517;
+  --backgroundCard: #111517f0;
+}
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  font-family: "Nunito", sans-serif;
+  color: var(--black);
 }
 
 @media (prefers-reduced-motion: no-preference) {
