@@ -9,9 +9,8 @@ const useFetch = (url) => {
         type: "SET_COUNTRY_LIST",
         payload: data,
       });
-      console.log(data.length);
     } catch (err) {
-      console.log("Something went wrong!!!");
+      //
     }
   }, [dispatch]);
 

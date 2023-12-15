@@ -25,8 +25,6 @@ function CountryList() {
 
     return state.CountryList;
   });
-  console.log("lo stato della mia app è: ", CountryList);
-  // const [CountryList, setCountryList] = useState([]);
 
   const showCountries = useCallback(async () => {
     try {
@@ -36,9 +34,8 @@ function CountryList() {
         type: "SET_COUNTRY_LIST",
         payload: data,
       });
-      console.log(data.length);
     } catch (err) {
-      console.log("Something went wrong!!!");
+      //
     }
   }, [dispatch]);
 

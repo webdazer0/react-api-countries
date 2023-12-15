@@ -1,8 +1,7 @@
 function reducer(state, action) {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case "SET_COUNTRY_LIST":
-      console.log("aggiornando dati countrylist");
       return { ...state, CountryList: action.payload };
     case "FILTER_BY_REGION": {
       const { regionSelected } = action.payload;

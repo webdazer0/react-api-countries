@@ -31,7 +31,7 @@ const HeaderStyled = styled.div`
 
 function Header() {
   const handleClick = () => {
-    console.log("ciaoo");
+    //
   };
 
   return (
