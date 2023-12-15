@@ -1,6 +1,9 @@
 import { useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
 const useFetch = (url) => {
+  const dispatch = useDispatch();
+
   const showCountries = useCallback(async () => {
     try {
       const res = await fetch(url);
