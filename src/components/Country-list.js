@@ -4,7 +4,7 @@ import Country from "./Country";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
 import * as countryService from "../service/countryService";
-import { loadCountriesAction } from "../country-actions";
+import { loadCountriesAction } from "../redux/actions/countryAction";
 
 const CountryListStyled = styled.div`
   background: var(--background);
@@ -36,8 +36,8 @@ function CountryList() {
         const data = await countryService.getAll();
         console.log("data json => ", data);
         dispatch(loadCountriesAction(data));
-      } catch (err) {
-        //
+      } catch (error) {
+        // errorLogger(error.stack)
       }
     };
 

@@ -11,6 +11,9 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   color: var(--black);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
@@ -30,6 +33,11 @@ body {
   --black: hsl(200, 15%, 8%); /* #111517 */
   --white: hsl(0, 0%, 100%); /* #ffffff */
   --background: hsl(0, 0%, 98%); /* #fafafa */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,7 +1,7 @@
 import "./App.css";
-import CountryList from "./components/Country-list";
-import ActionList from "./components/Action-list";
-import Header from "./components/Header";
+import CountryList from "../components/Country-list";
+import ActionList from "../components/Action-list";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 
 function App() {

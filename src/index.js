@@ -1,26 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
-// Redux
-import { createStore, compose } from "redux";
-import reducer from "./reducer";
 import { Provider } from "react-redux";
-import { applyMiddleware } from "redux";
-
-const initialState = {
-  countryList: [],
-  countryListByName: [],
-  countryListByRegion: [],
-  filterByName: "",
-  filterByRegion: "",
-};
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancers = composeEnhancers(applyMiddleware());
-
-const store = createStore(reducer, initialState, enhancers);
+import store from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>

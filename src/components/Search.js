@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "./Input";
-import { filterByNameAction } from "../country-actions";
+import { filterByNameAction } from "../redux/actions/countryAction";
 
 const SearchStyled = styled.div`
   display: grid;

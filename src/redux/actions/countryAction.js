@@ -1,4 +1,4 @@
-import { countryType } from "./redux-constants";
+import { countryType } from "../redux-constants";
 
 export const loadCountriesAction = (data) => {
   return {

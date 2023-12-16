@@ -1,6 +1,13 @@
-import { countryType } from "./redux-constants";
+import { countryType } from "../redux-constants";
+const initialState = {
+  countryList: [],
+  countryListByName: [],
+  countryListByRegion: [],
+  filterByName: "",
+  filterByRegion: "",
+};
 
-function reducer(state, action) {
+function countryReducer(state = initialState, action) {
   // console.log(action);
   switch (action.type) {
     // case "SET_COUNTRY_LIST":
@@ -32,4 +39,4 @@ function reducer(state, action) {
   }
 }
 
-export default reducer;
+export default countryReducer;

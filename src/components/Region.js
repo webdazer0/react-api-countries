@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByRegionAction } from "../country-actions";
+import { filterByRegionAction } from "../redux/actions/countryAction";
 
 const RegionStyled = styled.div`
   * {
