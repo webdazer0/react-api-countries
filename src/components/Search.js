@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "./Input";
+import { filterByNameAction } from "../country-actions";
 
 const SearchStyled = styled.div`
   display: grid;
@@ -19,31 +20,25 @@ const SearchStyled = styled.div`
 function Search() {
   const dispatch = useDispatch();
   const filterByName = useSelector((state) => state.filterByName);
-  const CountryListByName = useSelector((state) => state.CountryListByName);
+  const countryListByName = useSelector((state) => state.countryListByName);
 
   const [inputValue, setInputValue] = useState(filterByName);
 
   const onNameChange = (event) => {
     const { value } = event.target;
-    dispatch({
-      type: "FILTER_BY_NAME",
-      payload: value,
-    });
+    dispatch(filterByNameAction(value));
   };
 
   const clearInput = () => {
     setInputValue("");
-    dispatch({
-      type: "FILTER_BY_NAME",
-      payload: "",
-    });
+    dispatch(filterByNameAction(""));
   };
 
   return (
     <SearchStyled>
       <Input value={inputValue} onChange={onNameChange} onReset={clearInput} />
 
-      {CountryListByName.length === 0 && inputValue && (
+      {countryListByName.length === 0 && inputValue && (
         <p>
           <strong>{inputValue} </strong>: Not found in Country List
         </p>

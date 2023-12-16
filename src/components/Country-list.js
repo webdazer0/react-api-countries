@@ -1,8 +1,10 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Country from "./Country";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
+import * as countryService from "../service/countryService";
+import { loadCountriesAction } from "../country-actions";
 
 const CountryListStyled = styled.div`
   background: var(--background);
@@ -15,45 +17,49 @@ const CountryListStyled = styled.div`
   // border: solid 1px red;
 `;
 function CountryList() {
+  console.log("✅ CountryList BUILDING");
   const dispatch = useDispatch();
-  const CountryList = useSelector((state) => {
+  const countryList = useSelector((state) => {
     if (state.filterByRegion !== "") {
-      return state.CountryListByRegion;
+      return state.countryListByRegion;
     }
     if (state.filterByName.length > 0) {
-      return state.CountryListByName;
+      return state.countryListByName;
     }
 
-    return state.CountryList;
+    return state.countryList;
   });
 
-  const showCountries = useCallback(async () => {
-    try {
-      const res = await fetch("https://restcountries.eu/rest/v2/all");
-      const data = await res.json();
-      dispatch({
-        type: "SET_COUNTRY_LIST",
-        payload: data,
-      });
-    } catch (err) {
-      //
-    }
+  useEffect(() => {
+    const showCountries = async () => {
+      try {
+        const data = await countryService.getAll();
+        console.log("data json => ", data);
+        dispatch(loadCountriesAction(data));
+      } catch (err) {
+        //
+      }
+    };
+
+    showCountries();
   }, [dispatch]);
 
-  useEffect(() => {
-    showCountries();
-  }, [showCountries]);
+  if (!countryList) {
+    <Wrapper>
+      <CountryListStyled>
+        <p>Loading...</p>
+      </CountryListStyled>
+    </Wrapper>;
+  }
 
   return (
     <Wrapper>
       <CountryListStyled>
-        {!CountryList ? (
-          <p>Loading...</p>
-        ) : (
-          CountryList.map(({ flag, name, population, region, capital }) => {
+        {countryList.map(
+          ({ flag, name, population, region, capital }, index) => {
             return (
               <Country
-                key={name}
+                key={`country${index}`}
                 flag={flag}
                 name={name}
                 population={population}
@@ -61,7 +67,7 @@ function CountryList() {
                 capital={capital}
               />
             );
-          })
+          }
         )}
       </CountryListStyled>
     </Wrapper>

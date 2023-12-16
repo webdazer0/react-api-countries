@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { loadCountriesAction } from "../country-actions";
 
 const useFetch = (url) => {
   const dispatch = useDispatch();
@@ -8,10 +9,7 @@ const useFetch = (url) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      dispatch({
-        type: "SET_COUNTRY_LIST",
-        payload: data,
-      });
+      dispatch(loadCountriesAction(data));
     } catch (err) {
       //
     }

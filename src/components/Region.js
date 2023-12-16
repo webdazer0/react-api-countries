@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { filterByRegionAction } from "../country-actions";
 
 const RegionStyled = styled.div`
   * {
@@ -62,13 +63,6 @@ const RegionStyled = styled.div`
     }
   }
 `;
-
-const filterByRegionAction = (regionSelected) => {
-  return {
-    type: "FILTER_BY_REGION",
-    payload: { regionSelected },
-  };
-};
 
 function Region() {
   const filterByRegion = useSelector((state) => state.filterByRegion);
