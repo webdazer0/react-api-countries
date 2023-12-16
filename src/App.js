@@ -1,32 +1,32 @@
-// import logo from "./logo.svg";
 import "./App.css";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./reducer";
-
 import CountryList from "./components/Country-list";
 import ActionList from "./components/Action-list";
 import Header from "./components/Header";
-
-const initialState = {
-  CountryList: [],
-  CountryListByName: [],
-  CountryListByRegion: [],
-  filterByName: "",
-  filterByRegion: "",
-};
-
-const store = createStore(reducer, initialState);
+import { useEffect, useState } from "react";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const mainClass = darkMode ? "is-dark-mode" : "is-light-mode";
+
+  function onListenerMedia(mq) {
+    setDarkMode(mq.matches);
+  }
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    mq.addListener(onListenerMedia);
+    setDarkMode(mq.matches);
+    return () => mq.removeListener(onListenerMedia);
+  }, []);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Header />
+    <div className={`App ${mainClass}`}>
+      <Header setDarkMode={setDarkMode} darkMode={darkMode} />
+      <main>
         <ActionList />
         <CountryList />
-      </div>
-    </Provider>
+      </main>
+    </div>
   );
 }
 
