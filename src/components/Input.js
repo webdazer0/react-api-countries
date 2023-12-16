@@ -2,48 +2,60 @@ import React from "react";
 import styled from "styled-components";
 
 const InputStyled = styled.label`
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   position: relative;
-  background-color: white;
-  flex: 1;
   align-items: center;
-  padding: 0 2rem;
   border-radius: 5px;
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
+  background: var(--white);
+
   input {
-    // width: 100%;
+    background: transparent;
     flex: 1;
     border: none;
     height: 48px;
     line-height: 48px;
-    padding: 0 2rem;
+    padding: 0 3rem;
     font-size: 0.7em;
-
     outline: 0;
     position: relative;
     &::-webkit-input-placeholder {
       color: #c4c4c4;
     }
   }
-  i {
+  .icon-leading,
+  .icon-trailing {
     color: #c4c4c4;
-    width: 15px;
-    height: 48px;
-    line-height: 48px;
-    margin-left: 0.6rem;
-    // background-color: green;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
     position: absolute;
-    top: 0;
-    left: 0;
     pointer-events: none;
+  }
+  .icon-leading {
+    left: 0;
+  }
+  .icon-trailing {
+    right: 0;
+  }
+  .close {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
   }
 `;
 
-function Input({ ...props }) {
+function Input({ onReset, ...props }) {
   return (
     <InputStyled>
+      <i className="fas fa-search icon-leading"></i>
       <input type="text" {...props} placeholder="Search for a country" />
-      <i className="fas fa-search"></i>
+      {props.value && (
+        <i className="fas fa-times close icon-trailing" onClick={onReset}></i>
+      )}
     </InputStyled>
   );
 }

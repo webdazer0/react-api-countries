@@ -5,13 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
 
 const CountryListStyled = styled.div`
-  display: grid;
-  grid-row-gap: 2.3em;
-  // grid-template-columns: 1fr 1fr 1fr;
   background: var(--background);
-  padding: 4em 2em;
-  // border: solid 1px red;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 270px);
   justify-content: center;
+  grid-gap: 2.3em; // 66px
+  background: var(--background);
+  padding: 3em 0em;
+  // border: solid 1px red;
 `;
 function CountryList() {
   const dispatch = useDispatch();

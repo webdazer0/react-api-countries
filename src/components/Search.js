@@ -4,18 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "./Input";
 
 const SearchStyled = styled.div`
-  // background: green;
   display: grid;
   position: relative;
 
-  .close {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    border-radius: 50%;
-    border: none;
-    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
-  }
   p {
     text-align: center;
     margin-top: 0.75rem;
@@ -32,11 +23,11 @@ function Search() {
 
   const [inputValue, setInputValue] = useState(filterByName);
 
-  const onNameChange = (e) => {
-    setInputValue(e.target.value);
+  const onNameChange = (event) => {
+    const { value } = event.target;
     dispatch({
       type: "FILTER_BY_NAME",
-      payload: e.target.value,
+      payload: value,
     });
   };
 
@@ -50,10 +41,8 @@ function Search() {
 
   return (
     <SearchStyled>
-      <Input value={inputValue} onChange={onNameChange} />
-      {inputValue && (
-        <i className="fas fa-times close" onClick={clearInput}></i>
-      )}
+      <Input value={inputValue} onChange={onNameChange} onReset={clearInput} />
+
       {CountryListByName.length === 0 && inputValue && (
         <p>
           <strong>{inputValue} </strong>: Not found in Country List
