@@ -9,7 +9,41 @@ const callApi = async (url) => {
 };
 
 // SERVICES
+/**
+ *
+ * @returns {Promise<CountryDTO[]>}
+ */
+export const getAll = async () => {
+  const countries = await callApi(`${API_URI}/all`);
+  return countryListAdapter(countries);
+};
 
-export const getAll = () => {
-  return callApi(`${API_URI}/all`);
+// ADAPTERS
+/**
+ *
+ * @param {CountryAPI[]} countriesApi
+ * @returns {CountryDTO[]}
+ */
+const countryListAdapter = (countriesApi) => {
+  return countriesApi.map((countryApi) => countryAdapter(countryApi));
+};
+/**
+ *
+ * @param {CountryAPI} countryApi
+ * @returns {CountryDTO}
+ */
+const countryAdapter = (countryApi) => {
+  return {
+    name: countryApi.name,
+    nativeName: countryApi.nativeName,
+    capital: countryApi.capital,
+    population: countryApi.population,
+    region: countryApi.region,
+    flag: countryApi.flag,
+    code: {
+      cioc: countryApi.cioc,
+      iso3: countryApi.alpha3Code,
+      iso2: countryApi.alpha2Code,
+    },
+  };
 };
