@@ -1,50 +1,47 @@
 html {
   font-size: 16px;
 }
+
 :root {
-  --black: #111517;
-  --white: #fff;
-  --background: #fafafa;
-  --backgroundCard: #fafafa;
+  --black: hsl(200, 15%, 8%); /* #111517 */
+  --white: hsl(0, 0%, 100%); /* #ffffff */
+  --background: hsl(0, 0%, 98%); /* #fafafa */
 }
-div.dark {
-  --black: #fafafa;
-  --white: #111517;
-  --background: #111517;
-  --backgroundCard: #111517f0;
-}
-.App {
-  text-align: center;
-  font-family: "Nunito", sans-serif;
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
   color: var(--black);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.App {
+  font-family: "Nunito", sans-serif;
+  background: var(--background);
+  color: var(--black);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.is-dark-mode {
+  --black: hsl(0, 0%, 100%); /* #ffffff  */
+  --white: hsl(209, 26%, 21%); /* #273542  */
+  --background: hsl(206, 32%, 15%); /* #1a2833  */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.is-light-mode {
+  --black: hsl(200, 15%, 8%); /* #111517 */
+  --white: hsl(0, 0%, 100%); /* #ffffff */
+  --background: hsl(0, 0%, 98%); /* #fafafa */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --black: hsl(0, 0%, 100%); /* #ffffff  */
+    --white: hsl(209, 26%, 21%); /* #273542  */
+    --background: hsl(206, 32%, 15%); /* #1a2833  */
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    overflow-y: scroll !important;
   }
 }
