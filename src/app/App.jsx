@@ -1,16 +1,22 @@
 import "./App.css";
 import Header from "../components/Header";
 import { useAppTheme } from "../hooks/useAppTheme";
-import ActionList from "../components/Action-list";
-import CountryList from "../components/Country-list";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import { RoutesWithNotFound } from "../utilities/RoutesWithNotFound";
+import { HomePage } from "../pages/Home";
+import { CountryPage } from "../pages/Country";
 
 function App() {
   return (
     <AppTheme>
       <Header />
       <main>
-        <ActionList />
-        <CountryList />
+        <Router>
+          <RoutesWithNotFound>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/country/:id" element={<CountryPage />} />
+          </RoutesWithNotFound>
+        </Router>
       </main>
     </AppTheme>
   );
