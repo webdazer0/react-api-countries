@@ -32,9 +32,10 @@ const InputStyled = styled.label`
     text-align: center;
     line-height: 3rem;
     position: absolute;
-    pointer-events: none;
+   
   }
   .icon-leading {
+    pointer-events: none;
     left: 0;
   }
   .icon-trailing {
