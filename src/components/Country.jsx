@@ -1,4 +1,6 @@
 import React from "react";
+
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const CountryStyled = styled.div`
@@ -30,8 +32,15 @@ const CountryStyled = styled.div`
 `;
 
 function Country({ flag, name, population, region, capital }) {
+
+  const  navigate = useNavigate()
+
+const onNavigate = () => {
+  console.log(navigate(`/country/${name}`));
+}
+
   return (
-    <CountryStyled>
+    <CountryStyled onClick={onNavigate}>
       <img src={flag} alt="" width="360" height="auto" loading="lazy" />
       <div className="details">
         <h2>{name}</h2>
