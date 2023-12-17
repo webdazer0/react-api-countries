@@ -65,7 +65,7 @@ const RegionStyled = styled.div`
 `;
 
 function Region() {
-  const filterByRegion = useSelector((state) => state.filterByRegion);
+  const filterByRegion = useSelector((state) => state.filters.byRegion);
 
   const [dropdown, setdropdown] = useState(false);
   const dispatch = useDispatch();

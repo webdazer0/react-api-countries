@@ -7,16 +7,16 @@ export const loadCountriesAction = (data) => {
   };
 };
 
-export const filterByRegionAction = (regionSelected) => {
+export const filterByRegionAction = (filter) => {
   return {
     type: countryType.FILTER_BY_REGION,
-    payload: { regionSelected },
+    payload: filter,
   };
 };
 
-export const filterByNameAction = (name) => {
+export const filterByNameAction = (filter) => {
   return {
     type: countryType.FILTER_BY_NAME,
-    payload: { name },
+    payload: filter,
   };
 };

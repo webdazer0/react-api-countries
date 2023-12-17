@@ -1,38 +1,38 @@
 import { countryType } from "../redux-constants";
-const initialState = {
-  countryList: [],
-  countryListByName: [],
-  countryListByRegion: [],
-  filterByName: "",
-  filterByRegion: "",
+const emptyCountryState = {
+  rawCountries: [],
+  countries: [],
+  filters: {
+    byName: "",
+    byRegion: "",
+  },
 };
 
-function countryReducer(state = initialState, action) {
+function countryReducer(state = emptyCountryState, action) {
   // console.log(action);
   switch (action.type) {
-    // case "SET_COUNTRY_LIST":
-    case countryType.INIT:
-      return { ...state, countryList: action.payload };
-    // case "FILTER_BY_REGION": {
-    case countryType.FILTER_BY_REGION: {
-      const { regionSelected } = action.payload;
-      if (regionSelected === "") {
-        return { ...state, countryListByRegion: [], filterByRegion: "" };
-      }
-      const countryListByRegion = state.countryList.filter(
-        ({ region }) => region === regionSelected
-      );
-      return { ...state, countryListByRegion, filterByRegion: regionSelected };
+    case countryType.INIT: {
+      return {
+        ...emptyCountryState,
+        rawCountries: action.payload,
+        countries: action.payload,
+      };
     }
-    // case "FILTER_BY_NAME": {
+
+    case countryType.FILTER_BY_REGION: {
+      const filters = { ...state.filters, byRegion: action.payload }; // BY REGION
+
+      const countries = applyFilters(state.rawCountries, filters);
+
+      return { ...state, countries, filters };
+    }
+
     case countryType.FILTER_BY_NAME: {
-      if (action.payload === "") {
-        return { ...state, countryListByName: [], filterByName: "" };
-      }
-      const countryListByName = state.countryList.filter(({ name }) =>
-        name.toLowerCase().startsWith(action.payload.toLowerCase())
-      );
-      return { ...state, countryListByName, filterByName: action.payload };
+      const filters = { ...state.filters, byName: action.payload }; // BY NAME
+
+      const countries = applyFilters(state.rawCountries, filters);
+
+      return { ...state, countries, filters };
     }
     default:
       return state;
@@ -40,3 +40,27 @@ function countryReducer(state = initialState, action) {
 }
 
 export default countryReducer;
+
+// APPLY FILTERS
+
+const applyFilters = (countries, filter) => {
+  console.log({ filter });
+  const countriesByRegion = filterByRegion(countries, filter.byRegion);
+  const countriesByName = filterByName(countriesByRegion, filter.byName);
+  return countriesByName;
+};
+
+function filterByRegion(countries, filter) {
+  if (filter === "") return countries;
+  return countries.filter(({ region }) => region === filter).sort(orderDesc);
+}
+
+function filterByName(countries, filter) {
+  if (filter === "") return countries;
+  return countries
+    .filter(({ name }) => name.toLowerCase().startsWith(filter.toLowerCase()))
+    .sort(orderDesc);
+}
+
+const orderDesc = (a, b) => b.population - a.population;
+// const orderAsc = (a, b) => a.population - b.population;

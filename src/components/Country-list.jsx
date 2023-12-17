@@ -4,7 +4,6 @@ import Country from "./Country";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
 import * as countryService from "../service/countryService";
-import { mockData } from "../mockData";
 import { loadCountriesAction } from "../redux/actions/countryAction";
 
 const CountryListStyled = styled.div`
@@ -18,38 +17,25 @@ const CountryListStyled = styled.div`
   // border: solid 1px red;
 `;
 function CountryList() {
-  console.log("✅ CountryList BUILDING");
+  const countries = useSelector((state) => state.countries);
   const dispatch = useDispatch();
-  const countryList = useSelector((state) => {
-    if (state.filterByRegion !== "") {
-      return state.countryListByRegion;
-    }
-    if (state.filterByName.length > 0) {
-      return state.countryListByName;
-    }
-
-    return state.countryList;
-  });
 
   useEffect(() => {
-    console.log("✅ [showCountries]");
     const showCountries = async () => {
       try {
-        throw Error("error");
         const data = await countryService.getAll();
         console.log("data json => ", data);
         dispatch(loadCountriesAction(data));
       } catch (error) {
         console.log("error json => ", error.message);
         // errorLogger(error.stack)
-        dispatch(loadCountriesAction(mockData));
       }
     };
 
     showCountries();
   }, [dispatch]);
 
-  if (!countryList) {
+  if (!countries) {
     <Wrapper>
       <CountryListStyled>
         <p>Loading...</p>
@@ -60,16 +46,16 @@ function CountryList() {
   return (
     <Wrapper>
       <CountryListStyled>
-        {countryList.map(
-          ({ flag, name, population, region, capital }, index) => {
+        {countries.map(
+          (country, index) => {
             return (
               <Country
                 key={`country${index}`}
-                flag={flag}
-                name={name}
-                population={population}
-                region={region}
-                capital={capital}
+                flag={country.flag}
+                name={country.name}
+                population={country.population}
+                region={country.region}
+                capital={country.capital}
               />
             );
           }
