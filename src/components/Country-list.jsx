@@ -4,6 +4,7 @@ import Country from "./Country";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
 import * as countryService from "../service/countryService";
+import { mockData } from "../mockData";
 import { loadCountriesAction } from "../redux/actions/countryAction";
 
 const CountryListStyled = styled.div`
@@ -31,13 +32,17 @@ function CountryList() {
   });
 
   useEffect(() => {
+    console.log("✅ [showCountries]");
     const showCountries = async () => {
       try {
+        throw Error("error");
         const data = await countryService.getAll();
         console.log("data json => ", data);
         dispatch(loadCountriesAction(data));
       } catch (error) {
+        console.log("error json => ", error.message);
         // errorLogger(error.stack)
+        dispatch(loadCountriesAction(mockData));
       }
     };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "./Input";
@@ -22,25 +22,27 @@ function Search() {
   const filterByName = useSelector((state) => state.filterByName);
   const countryListByName = useSelector((state) => state.countryListByName);
 
-  const [inputValue, setInputValue] = useState(filterByName);
-
   const onNameChange = (event) => {
     const { value } = event.target;
     dispatch(filterByNameAction(value));
   };
 
   const clearInput = () => {
-    setInputValue("");
     dispatch(filterByNameAction(""));
   };
 
+  const par1 = countryListByName.length === 0;
+  const par2 = !!filterByName
+  console.log("filterByName => ", filterByName);
+  console.log({par1, par2});
+
   return (
     <SearchStyled>
-      <Input value={inputValue} onChange={onNameChange} onReset={clearInput} />
+      <Input value={filterByName} onChange={onNameChange} onReset={clearInput} />
 
-      {countryListByName.length === 0 && inputValue && (
+      {countryListByName.length === 0 && !!filterByName && (
         <p>
-          <strong>{inputValue} </strong>: Not found in Country List
+          <strong>{filterByName} </strong>: Not found in Country List
         </p>
       )}
     </SearchStyled>
