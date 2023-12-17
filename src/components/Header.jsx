@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
+import { useAppTheme } from "../hooks/useAppTheme";
 
 const HeaderStyled = styled.header`
   background: var(--white);
@@ -44,11 +45,8 @@ const HeaderStyled = styled.header`
   }
 `;
 
-function Header({ setDarkMode, darkMode }) {
-  const onToggleTheme = () => {
-    console.log("onToggleTheme");
-    setDarkMode(!darkMode);
-  };
+function Header() {
+  const { darkTheme, onToggleTheme } = useAppTheme();
 
   return (
     <HeaderStyled>
@@ -58,7 +56,7 @@ function Header({ setDarkMode, darkMode }) {
           <div className="dark-mode" onClick={onToggleTheme}>
             <p>
               <span className="moon">
-                <i className={`fa${darkMode ? "s" : "r"} fa-moon`}></i>
+                <i className={`fa${darkTheme ? "s" : "r"} fa-moon`}></i>
               </span>
               Dark Mode
             </p>

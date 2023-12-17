@@ -17,7 +17,7 @@ const CountryListStyled = styled.div`
   // border: solid 1px red;
 `;
 function CountryList() {
-  const countries = useSelector((state) => state.countries);
+  const countries = useSelector((state) => state.countryReducer.countries);
   const dispatch = useDispatch();
 
   useEffect(() => {

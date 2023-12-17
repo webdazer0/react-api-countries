@@ -18,8 +18,8 @@ const SearchStyled = styled.div`
 
 function Search() {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
-  const countries = useSelector((state) => state.countries);
+  const filters = useSelector((state) => state.countryReducer.filters);
+  const countries = useSelector((state) => state.countryReducer.countries);
 
   const onNameChange = (event) => {
     const { value } = event.target;
