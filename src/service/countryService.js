@@ -18,6 +18,15 @@ export const getAll = async () => {
   return countryListAdapter(countries);
 };
 
+export const getBy = async (iso2) => {
+  const countries = await callApi(`${API_URI}/alpha/${iso2}`);
+  const allData = countryListAdapter(countries);
+  console.log({ allData });
+  return allData.find(
+    ({ code }) => code.iso2.toLowerCase() === iso2.toLowerCase()
+  );
+};
+
 // ADAPTERS
 /**
  *
@@ -45,5 +54,11 @@ const countryAdapter = (countryApi) => {
       iso3: countryApi.alpha3Code,
       iso2: countryApi.alpha2Code,
     },
+    //
+    subregion: countryApi.subregion,
+    borders: countryApi.borders,
+    domain: countryApi.topLevelDomain,
+    currencies: countryApi.currencies, // code, name, symbol
+    languages: countryApi.languages,
   };
 };
