@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Wrapper from "../../components/Wrapper";
 import CountrySelected from "./CountrySelected";
 import { useEffect, useState } from "react";
-import * as countryService from "../../service/countryService";
+import * as countryService from "../../service/country.service";
 
 const CountryPageStyled = styled.div`
   .back {

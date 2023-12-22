@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Country from "./Country";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
-import * as countryService from "../service/countryService";
+import * as countryService from "../service/country.service";
 import { loadCountriesAction } from "../redux/actions/countryAction";
 
 const CountryListStyled = styled.div`
