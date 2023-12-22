@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const InputStyled = styled.label`
-  display: flex;
+  display: inline-flex;
   width: 100%;
   position: relative;
   align-items: center;
@@ -19,6 +19,7 @@ const InputStyled = styled.label`
     padding: 0 3rem;
     font-size: 0.7em;
     outline: 0;
+    color: var(--black);
     position: relative;
     &::-webkit-input-placeholder {
       color: #c4c4c4;
@@ -45,7 +46,7 @@ const InputStyled = styled.label`
     position: absolute;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05); */
   }
 `;
 

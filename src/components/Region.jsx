@@ -10,6 +10,7 @@ const RegionStyled = styled.div`
 
   font-size: 0.75rem;
   position: relative;
+  max-width: 164px;
 
   .dropdown {
     display: flex;

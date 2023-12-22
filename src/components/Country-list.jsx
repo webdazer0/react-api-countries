@@ -46,20 +46,9 @@ function CountryList() {
   return (
     <Wrapper>
       <CountryListStyled>
-        {countries.map(
-          (country, index) => {
-            return (
-              <Country
-                key={`country${index}`}
-                flag={country.flag}
-                name={country.name}
-                population={country.population}
-                region={country.region}
-                capital={country.capital}
-              />
-            );
-          }
-        )}
+        {countries.map((country, index) => {
+          return <Country key={`country${index}`} {...country} />;
+        })}
       </CountryListStyled>
     </Wrapper>
   );
