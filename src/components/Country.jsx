@@ -31,27 +31,27 @@ const CountryStyled = styled.div`
   }
 `;
 
-function Country({ flag, name, population, region, capital }) {
+function Country(props) {
 
   const  navigate = useNavigate()
 
 const onNavigate = () => {
-  console.log(navigate(`/country/${name}`));
+  console.log(navigate(`/country/${props.code.iso2}`));
 }
 
   return (
     <CountryStyled onClick={onNavigate}>
-      <img src={flag} alt="" width="360" height="auto" loading="lazy" />
+      <img src={props.flag} alt="" width="360" height="auto" loading="lazy" />
       <div className="details">
-        <h2>{name}</h2>
+        <h2>{props.name}</h2>
         <p>
-          <strong>population:</strong> {population}
+          <strong>population:</strong> {props.population}
         </p>
         <p>
-          <strong>region:</strong> {region}
+          <strong>region:</strong> {props.region}
         </p>
         <p>
-          <strong>capital:</strong> {capital}
+          <strong>capital:</strong> {props.capital}
         </p>
       </div>
     </CountryStyled>
