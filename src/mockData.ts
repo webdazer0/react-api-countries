@@ -1,4 +1,6 @@
-export const mockData = [
+import { APIv2Country } from "./models";
+
+export const mockData: APIv2Country[] = [
   {
     name: "Argentina",
     topLevelDomain: [".ar"],
