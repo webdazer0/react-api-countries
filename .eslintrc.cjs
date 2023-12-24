@@ -16,5 +16,7 @@ module.exports = {
     ],
     // Workaround to unused vars
     "@typescript-eslint/no-unused-vars": "warn",
+    // Others Workarounds before complete migration to TS
+    "@typescript-eslint/no-explicit-any": "off",
   },
 };
