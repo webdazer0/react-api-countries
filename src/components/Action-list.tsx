@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import Region from "./Region";
 import Search from "./Search";
@@ -19,13 +18,11 @@ const ActionListStyled = styled.div`
 function ActionList() {
   return (
     <ActionListStyled>
-      <Wrapper>
         <div className="grid">
           <Search />
           <span></span>
           <Region />
         </div>
-      </Wrapper>
     </ActionListStyled>
   );
 }

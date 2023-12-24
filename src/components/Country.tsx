@@ -1,7 +1,6 @@
-import React from "react";
-
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { CountryDto } from "../models";
 
 const CountryStyled = styled.div`
   width: 264px;
@@ -31,12 +30,14 @@ const CountryStyled = styled.div`
   }
 `;
 
-function Country(props) {
+type CountryProps = CountryDto
+
+function Country(props: CountryProps) {
 
   const  navigate = useNavigate()
 
 const onNavigate = () => {
-  console.log(navigate(`/country/${props.code.iso2}`));
+  navigate(`/country/${props.code.iso2}`)
 }
 
   return (

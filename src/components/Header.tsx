@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
 import { useAppTheme } from "../hooks/useAppTheme";

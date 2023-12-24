@@ -1,6 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
 import { BorderItem } from '../../components/BorderItem';
+import { CountryDto } from '../../models';
 
 const CountrySelectedStyled = styled.div`
   margin-top: 3em;
@@ -42,41 +42,34 @@ const CountrySelectedStyled = styled.div`
   }
 `
 
-function CountrySelected({
-  flag,
-  name,
-  nativeName,
-  population,
-  region,
-  subregion,
-  capital,
-  topLevelDomain,
-  currencies = [],
-  languages = [],
-  borders = [],
-  code
-}) {
+type CountrySelectedProps = {
+  country?: CountryDto;
+}
+
+function CountrySelected({country}: CountrySelectedProps) {
+  if(!country) return <></>
+
   return (
     <CountrySelectedStyled>
-      <img src={flag} alt="" />
+      <img src={country.flag} alt="" />
       <div>
-        <h2>{name}</h2>
+        <h2>{country.name}</h2>
         <div className="grid">
           <div>
-            <p><strong>Native Name:</strong> {nativeName}</p>
-            <p><strong>Population:</strong> {population}</p>
-            <p><strong>Region:</strong> {region}</p>
-            <p><strong>Sub Region:</strong> {subregion}</p>
-            <p><strong>Capital:</strong> {capital}</p>
+            <p><strong>Native Name:</strong> {country.nativeName}</p>
+            <p><strong>Population:</strong> {country.population}</p>
+            <p><strong>Region:</strong> {country.region}</p>
+            <p><strong>Sub Region:</strong> {country.subregion}</p>
+            <p><strong>Capital:</strong> {country.capital}</p>
           </div>
           <div>
-            <p><strong>Top Level Domain:</strong> {topLevelDomain}</p>
-            <p><strong>Currencies:</strong> {currencies.map((item) => <span>{item.name}</span>)}</p>
-            <p className="languages"><strong>Languages:</strong> {languages.map((item) => <span>{item.name}</span>)}</p>
+            <p><strong>Top Level Domain:</strong> {country.domain}</p>
+            <p><strong>Currencies:</strong> {country.currencies.map((item, index) => <span key={index}>{item.name}</span>)}</p>
+            <p className="languages"><strong>Languages:</strong> {country.languages.map((item, index) => <span key={index}>{item.name}</span>)}</p>
           </div>
         </div>
         <p className="borders"><strong>Border Countries:</strong></p>
-        {borders.map((item) => <BorderItem>{item}</BorderItem>)}
+        {country.borders.map((item, index) => <BorderItem key={index}>{item}</BorderItem>)}
       </div>
     </CountrySelectedStyled>
   )

@@ -4,6 +4,7 @@ import { useAppTheme } from "../hooks/useAppTheme";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { RoutesWithNotFound } from "../utilities/RoutesWithNotFound";
 import { HomePage } from "../pages/Home";
+import { PropsWithChildren } from "react";
 import { CountryPage } from "../pages/Country";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
 
 export default App;
 
-const AppTheme = ({ children }) => {
+const AppTheme = ({ children }: PropsWithChildren) => {
   const { darkTheme } = useAppTheme();
 
   const mainClass = darkTheme ? "is-dark-mode" : "is-light-mode";

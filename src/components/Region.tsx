@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { filterCountriesByRegion } from "../redux/reducers/countrySlice";
+//
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { filterByRegionAction } from "../redux/actions/countryAction";
 
 const RegionStyled = styled.div`
   * {
@@ -66,20 +67,20 @@ const RegionStyled = styled.div`
 `;
 
 function Region() {
-  const filterByRegion = useSelector((state) => state.countryReducer.filters.byRegion);
+  const filterByRegion = useAppSelector((state) => state.country.filters.byRegion);
 
   const [dropdown, setdropdown] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onRegionChange = (region) => {
-    dispatch(filterByRegionAction(region));
+  const onRegionChange = (region: string) => {
+    dispatch(filterCountriesByRegion(region));
     setdropdown(false);
   };
 
   return (
-    <RegionStyled onChange={onRegionChange}>
+    <RegionStyled>
       <div className="dropdown" onClick={() => setdropdown(!dropdown)}>
-        <span>{!!filterByRegion ? filterByRegion : "Filter by Region"}</span>
+        <span>{filterByRegion !== "" ? filterByRegion : "Filter by Region"}</span>
         <i className="fas fa-chevron-down"></i>
       </div>
       <ul className={`dropdown-list ${dropdown ? "open" : ""}`}>

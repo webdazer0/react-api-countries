@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import Country from "./Country";
-import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "./Wrapper";
+// SERVICES
 import * as countryService from "../service/country.service";
-import { loadCountriesAction } from "../redux/actions/countryAction";
+// REDUX
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { loadCountries } from "../redux/reducers/countrySlice";
+// STYLES
+import styled from "styled-components";
 
 const CountryListStyled = styled.div`
   background: var(--background);
@@ -17,18 +20,19 @@ const CountryListStyled = styled.div`
   // border: solid 1px red;
 `;
 function CountryList() {
-  const countries = useSelector((state) => state.countryReducer.countries);
-  const dispatch = useDispatch();
+  const countries = useAppSelector((state) => state.country.countries);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const showCountries = async () => {
       try {
         const data = await countryService.getAll();
-        console.log("data json => ", data);
-        dispatch(loadCountriesAction(data));
+        dispatch(loadCountries(data));
       } catch (error) {
-        console.log("error json => ", error.message);
-        // errorLogger(error.stack)
+        if(error instanceof Error) {
+          console.log("error json => ", error.message);
+          // errorLogger(error.stack)
+        }
       }
     };
 
@@ -44,13 +48,11 @@ function CountryList() {
   }
 
   return (
-    <Wrapper>
       <CountryListStyled>
         {countries.map((country, index) => {
           return <Country key={`country${index}`} {...country} />;
         })}
       </CountryListStyled>
-    </Wrapper>
   );
 }
 

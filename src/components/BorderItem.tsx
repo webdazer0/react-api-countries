@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 const BorderItemStyled = styled.span`
@@ -10,8 +11,8 @@ const BorderItemStyled = styled.span`
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 `;
 
-export const BorderItem = ({ children }) => {
-  return <BorderItemStyled>{children}</BorderItemStyled>;
+export const BorderItem = (props: PropsWithChildren) => {
+  return <BorderItemStyled>{props.children}</BorderItemStyled>;
 };
 
 const ChipItemStyled = styled.span`
@@ -27,6 +28,6 @@ const ChipItemStyled = styled.span`
     cursor: pointer;
 `;
 
-export const Chip = ({ children }) => {
-  return <ChipItemStyled>{children}</ChipItemStyled>;
+export const Chip = (props: PropsWithChildren) => {
+  return <ChipItemStyled>{props.children}</ChipItemStyled>;
 };

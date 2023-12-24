@@ -1,4 +1,4 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 const WrapperStyled = styled.div`
@@ -7,8 +7,8 @@ const WrapperStyled = styled.div`
   padding: 0 1rem;
 `;
 
-function Wrapper({ children }) {
-  return <WrapperStyled>{children}</WrapperStyled>;
+function Wrapper(props: PropsWithChildren) {
+  return <WrapperStyled>{props.children}</WrapperStyled>;
 }
 
 export default Wrapper;

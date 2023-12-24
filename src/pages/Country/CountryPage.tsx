@@ -1,10 +1,13 @@
-import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
-import Wrapper from "../../components/Wrapper";
-import CountrySelected from "./CountrySelected";
 import { useEffect, useState } from "react";
+import Wrapper from "@/components/Wrapper";
+import CountrySelected from "./CountrySelected";
+import { useNavigate, useParams } from "react-router-dom";
+// SERVICES
 import * as countryService from "../../service/country.service";
+// REDUX
+import { useAppSelector } from "../../redux/hooks";
+// STYLES
+import styled from "styled-components";
 
 const CountryPageStyled = styled.div`
   .back {
@@ -28,19 +31,19 @@ const CountryPageStyled = styled.div`
 `
 
 export const CountryPage = () => {
-  const params = useParams()
+  const params = useParams<{id: string}>()
   const navigate = useNavigate()
-  const countriesFiltered = useSelector(state => {
-    const countries = state.countryReducer.rawCountries;
-    console.log("countries =>", countries);
-    console.log("params.id =>", params.id);
+  const countriesFiltered = useAppSelector(state => {
+    const countries = state.country.rawCountries;
+    // console.log("countries =>", countries);
+    // console.log("params.id =>", params.id);
     return countries.find(item => item.code.iso2 === params.id)
   })
   const [country, setCountry] = useState(countriesFiltered)
   
   useEffect(() => {
-    if (!country) {
-      const code = params.id.toLowerCase()
+    if (!country || !!params.id) {
+      const code = params.id!.toLowerCase()
       countryService.getBy(code).then(response => setCountry(response));
     }
   }, [country, params.id])
@@ -52,7 +55,7 @@ export const CountryPage = () => {
     <CountryPageStyled>
       <Wrapper>
         <button className="back" onClick={handleClick}><i className="fas fa-long-arrow-alt-left"></i> Back</button>
-        <CountrySelected {...country} />
+        <CountrySelected country={country} />
       </Wrapper>
     </CountryPageStyled>
   )

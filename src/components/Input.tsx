@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 
 const InputStyled = styled.label`
@@ -50,7 +50,13 @@ const InputStyled = styled.label`
   }
 `;
 
-function Input({ onReset, ...props }) {
+type InputProps = {
+  value: string,
+  onChange: (event:  ChangeEvent<HTMLInputElement>) => void,
+  onReset: VoidFunction,
+}
+
+function Input({ onReset, ...props }: InputProps) {
   return (
     <InputStyled>
       <i className="fas fa-search icon-leading"></i>
