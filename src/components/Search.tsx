@@ -2,7 +2,7 @@ import { ChangeEvent, PropsWithChildren } from "react";
 import Input from "./Input";
 // REDUX
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { filterCountriesByName } from "@/redux/reducers/countrySlice";
+import { filterCountriesByName } from "@/redux/slices/country.slice";
 // STYLES
 import styled from "styled-components";
 

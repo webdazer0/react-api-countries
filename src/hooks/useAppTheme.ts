@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { toggleTheme, toggleThemeFromOs } from "@/redux/reducers/prefSlice";
+import { toggleTheme, toggleThemeFromOs } from "@/redux/slices/pref.slice";
 import { useEffect } from "react";
 
 export const useAppTheme = () => {

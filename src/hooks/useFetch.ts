@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/redux/hooks";
-import { loadCountries } from "@/redux/reducers/countrySlice";
+import { loadCountries } from "@/redux/slices/country.slice";
 import { useCallback, useEffect } from "react";
 
 const useFetch = (url: string) => {

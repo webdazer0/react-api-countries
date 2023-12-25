@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { countrySlice } from "./reducers/countrySlice";
-import { prefSlice } from "./reducers/prefSlice";
+import { countrySlice } from "./slices/country.slice";
+import { prefSlice } from "./slices/pref.slice";
 
 export const store = configureStore({
   reducer: {

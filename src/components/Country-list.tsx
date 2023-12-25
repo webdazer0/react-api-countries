@@ -5,7 +5,7 @@ import Wrapper from "./Wrapper";
 import * as countryService from "@/service/country.service";
 // REDUX
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { loadCountries } from "@/redux/reducers/countrySlice";
+import { loadCountries } from "@/redux/slices/country.slice";
 // STYLES
 import styled from "styled-components";
 
