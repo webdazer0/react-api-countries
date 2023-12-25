@@ -1,5 +1,5 @@
+import { CountryDto, CountryFilters, emptyCountryState } from "@/models";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CountryDto, CountryFilters, CountryState, emptyCountryState } from "../../models";
 
 export const countrySlice = createSlice({
   name: "Country",
@@ -52,5 +52,6 @@ function _filterByName(countries: CountryDto[], filter: string) {
     .sort(orderDesc);
 }
 
-const orderDesc = (a: CountryDto, b: CountryDto) => b.population! - a.population!;
+const orderDesc = (a: CountryDto, b: CountryDto) =>
+  b.population! - a.population!;
 // const orderAsc = (a, b) => a.population - b.population;

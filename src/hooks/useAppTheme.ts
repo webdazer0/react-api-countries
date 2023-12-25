@@ -1,6 +1,6 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { toggleTheme, toggleThemeFromOs } from "@/redux/reducers/prefSlice";
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { toggleTheme, toggleThemeFromOs } from "../redux/reducers/prefSlice";
 
 export const useAppTheme = () => {
   const darkTheme = useAppSelector((state) => state.pref.darkTheme);

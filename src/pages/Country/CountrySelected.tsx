@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { BorderItem } from '../../components/BorderItem';
-import { CountryDto } from '../../models';
+import { BorderItem } from '@/components/BorderItem';
+import { CountryDto } from '@/models';
 
 const CountrySelectedStyled = styled.div`
   margin-top: 3em;

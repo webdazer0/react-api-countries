@@ -1,8 +1,8 @@
 import { ChangeEvent, PropsWithChildren } from "react";
 import Input from "./Input";
 // REDUX
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { filterCountriesByName } from "../redux/reducers/countrySlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { filterCountriesByName } from "@/redux/reducers/countrySlice";
 // STYLES
 import styled from "styled-components";
 

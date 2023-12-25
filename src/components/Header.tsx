@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
-import { useAppTheme } from "../hooks/useAppTheme";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 const HeaderStyled = styled.header`
   background: var(--white);

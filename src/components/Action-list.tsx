@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Region from "./Region";
 import Search from "./Search";
-import Wrapper from "./Wrapper";
+
 
 const ActionListStyled = styled.div`
   .grid {

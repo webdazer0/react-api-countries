@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { CountryDto } from "../models";
+import { CountryDto } from "@/models";
 
 const CountryStyled = styled.div`
   width: 264px;

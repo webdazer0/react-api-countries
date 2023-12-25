@@ -1,5 +1,5 @@
+import { prefEmptyState } from "@/models";
 import { createSlice } from "@reduxjs/toolkit";
-import { prefEmptyState } from "../../models/pref-state.model";
 import { RootState } from "../store";
 
 export const prefSlice = createSlice({

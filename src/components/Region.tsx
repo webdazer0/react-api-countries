@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { filterCountriesByRegion } from "../redux/reducers/countrySlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { filterCountriesByRegion } from "@/redux/reducers/countrySlice";
 //
 import styled from "styled-components";
 

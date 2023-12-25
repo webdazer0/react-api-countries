@@ -3,9 +3,9 @@ import Wrapper from "@/components/Wrapper";
 import CountrySelected from "./CountrySelected";
 import { useNavigate, useParams } from "react-router-dom";
 // SERVICES
-import * as countryService from "../../service/country.service";
+import * as countryService from "@/service/country.service";
 // REDUX
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 // STYLES
 import styled from "styled-components";
 

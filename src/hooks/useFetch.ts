@@ -1,6 +1,6 @@
-import { useEffect, useCallback } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { loadCountries } from "../redux/reducers/countrySlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { loadCountries } from "@/redux/reducers/countrySlice";
+import { useCallback, useEffect } from "react";
 
 const useFetch = (url: string) => {
   const dispatch = useAppDispatch();

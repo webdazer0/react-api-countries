@@ -1,6 +1,7 @@
-import { API_URI } from "../constants";
-import { APIv2Country, CountryDto } from "../models";
-import { countryAdapter, countryListAdapter } from "../adapters/country.adapter";
+import { countryAdapter, countryListAdapter } from "@/adapters/country.adapter";
+import { API_URI } from "@/config";
+import { mockData } from "@/mockData";
+import { APIv2Country, CountryDto } from "@/models";
 
 // CORE
 const callApi = async (url: string) => {
@@ -12,11 +13,21 @@ const callApi = async (url: string) => {
 
 // SERVICES
 export const getAll = async (): Promise<CountryDto[]> => {
-  const countries: APIv2Country[] = await callApi(`${API_URI}/all`);
+  // const countries: APIv2Country[] = await callApi(`${API_URI}/all`);
+  const countries: APIv2Country[] = mockData;
   return countryListAdapter(countries);
 };
 
-export const getBy = async (iso2: string): Promise<CountryDto> => {
-  const country: APIv2Country = await callApi(`${API_URI}/alpha/${iso2}`);
-  return countryAdapter(country);
+export const getBy = async (iso2: string): Promise<CountryDto | undefined> => {
+  try {
+    const country: APIv2Country = await callApi(`${API_URI}/alpha/${iso2}`);
+    return countryAdapter(country);
+  } catch (error) {
+    const countries: APIv2Country[] = mockData;
+    const allData: CountryDto[] = countryListAdapter(countries);
+    console.log({ allData });
+    return allData.find(
+      ({ code }) => code.iso2.toLowerCase() === iso2.toLowerCase()
+    );
+  }
 };
