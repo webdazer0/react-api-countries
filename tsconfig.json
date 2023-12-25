@@ -19,8 +19,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    /* Support JS before migration to TS */
-    "allowJs": true,
     /* Custom alias path @ */
     "paths": { "@/*": ["./src/*"] }
   },
